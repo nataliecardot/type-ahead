@@ -16,3 +16,15 @@ function findMatches(wordToMatch, cities) {
     return place.city.match(regex) || place.state.match(regex);
   });
 }
+
+// Called whenever value in input changes
+function displayMatches() {
+  console.log(this.value);
+}
+
+const searchInput = document.querySelector('.search');
+const suggestions = document.querySelector('.suggestions');
+
+// Change fires when you click out of the input
+searchInput.addEventListener('change', displayMatches);
+searchInput.addEventListener('keyup', displayMatches);
