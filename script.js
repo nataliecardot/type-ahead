@@ -19,7 +19,19 @@ function findMatches(wordToMatch, cities) {
 
 // Called whenever value in input changes
 function displayMatches() {
-  console.log(this.value);
+  const matchArray = findMatches(this.value, cities);
+  const html = matchArray
+    .map((place) => {
+      return `
+      <li>
+        <span className="name">${place.city}, ${place.state}</span>
+        <span className="population">${place.population}</span>
+      </li>
+    `;
+    })
+    // Returns a string created by concatenating all elements of array and joining without any characters between
+    .join('');
+  suggestions.innerHTML = html;
 }
 
 const searchInput = document.querySelector('.search');
