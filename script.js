@@ -1,14 +1,24 @@
 const endpoint =
   'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
 
-const cities = [];
+let cities = [];
 
-fetch(endpoint)
-  .then((response) => response.json())
-  // Without spread operator, data would be in a nested array; spread expands the items into elements within the array
-  .then((data) => cities.push(...data));
+// fetch is one way (the modern way; the old way is XMLHttpRequest) to do AJAX (basically meaning making an HTTP request without leaving the page)
+(async function fetchAsync(url) {
+  cities = await (await fetch(url)).json();
+})(endpoint);
 
-// console.log(cities);
+// (async function fetchCities(url) {
+//   let response = await fetch(url);
+//   let data = await response.json();
+//   cities = data;
+//   // console.log(cities);
+// })(endpoint);
+
+// fetch(endpoint)
+//   .then((response) => response.json())
+//   // Without spread operator, data would be in a nested array; spread expands the items into elements within the array
+//   .then((data) => cities.push(...data));
 
 function findMatches(wordToMatch, cities) {
   wordToMatch = wordToMatch.trim();
