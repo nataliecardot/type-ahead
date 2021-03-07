@@ -17,6 +17,12 @@ function findMatches(wordToMatch, cities) {
   });
 }
 
+function numberWithCommas(x) {
+  // \B matches an empty string not at the beginning or end of a word (whereas \b would match an empty string at the beginning or end of a word)
+  // ?= is a positive lookahead, ?! is a negative lookahead
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}
+
 // Called whenever value in input changes
 function displayMatches() {
   const matchArray = findMatches(this.value, cities);
@@ -34,7 +40,9 @@ function displayMatches() {
       return `
       <li>
         <span className="name">${cityName}, ${stateName}</span>
-        <span className="population">${place.population}</span>
+        <span className="population">${numberWithCommas(
+          place.population
+        )}</span>
       </li>
     `;
     })
