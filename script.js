@@ -28,7 +28,7 @@ function numberWithCommas(x) {
 function displayMatches() {
   if (this.value == ' ') return;
   const matchArray = findMatches(this.value, cities);
-  const html = matchArray
+  const resultHtml = matchArray
     .map((place) => {
       const regex = new RegExp(this.value, 'gi');
       const cityName = place.city.replace(
@@ -50,7 +50,7 @@ function displayMatches() {
     })
     // Returns a string created by concatenating all elements of array and joining without any characters between
     .join('');
-  results.innerHTML = html;
+  results.innerHTML = resultHtml;
 }
 
 const searchInput = document.querySelector('.search');
