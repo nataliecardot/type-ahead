@@ -8,6 +8,8 @@ fetch(endpoint)
   // Without spread operator, data would be in a nested array; spread expands the items into elements within the array
   .then((data) => cities.push(...data));
 
+// console.log(cities);
+
 function findMatches(wordToMatch, cities) {
   wordToMatch = wordToMatch.trim();
   return cities.filter((place) => {
@@ -18,10 +20,10 @@ function findMatches(wordToMatch, cities) {
   });
 }
 
-function numberWithCommas(x) {
+function numberWithCommas(num) {
   // \B matches an empty string not at the beginning or end of a word (whereas \b would match an empty string at the beginning or end of a word)
   // ?= is a positive lookahead, ?! is a negative lookahead
-  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  return num.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
 // Called whenever value in input changes
