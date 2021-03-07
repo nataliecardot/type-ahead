@@ -22,20 +22,29 @@ function displayMatches() {
   const matchArray = findMatches(this.value, cities);
   const html = matchArray
     .map((place) => {
+      const regex = new RegExp(this.value, 'gi');
+      const cityName = place.city.replace(
+        regex,
+        `<span class="hl">${this.value}</span>`
+      );
+      const stateName = place.state.replace(
+        regex,
+        `<span class="hl">${this.value}</span>`
+      );
       return `
       <li>
-        <span className="name">${place.city}, ${place.state}</span>
+        <span className="name">${cityName}, ${stateName}</span>
         <span className="population">${place.population}</span>
       </li>
     `;
     })
     // Returns a string created by concatenating all elements of array and joining without any characters between
     .join('');
-  suggestions.innerHTML = html;
+  results.innerHTML = html;
 }
 
 const searchInput = document.querySelector('.search');
-const suggestions = document.querySelector('.suggestions');
+const results = document.querySelector('.results');
 
 // Change fires when you click out of the input
 searchInput.addEventListener('change', displayMatches);
