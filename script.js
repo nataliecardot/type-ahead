@@ -21,7 +21,7 @@ function findMatches(wordToMatch, cities) {
 }
 
 function numberWithCommas(num) {
-  // \B matches an empty string not at the beginning or end of a word (whereas \b would match an empty string at the beginning or end of a word)
+  // \B matches an empty string between text (whereas \b would match an empty string at the beginning or end of text)
   // ?= is a positive lookahead, ?! is a negative lookahead
   return num.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
