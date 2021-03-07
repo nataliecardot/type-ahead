@@ -9,6 +9,7 @@ fetch(endpoint)
   .then((data) => cities.push(...data));
 
 function findMatches(wordToMatch, cities) {
+  wordToMatch = wordToMatch.trim();
   return cities.filter((place) => {
     // Figure out if city or state matches what was searched for
     const regex = new RegExp(wordToMatch, 'gi');
@@ -25,6 +26,7 @@ function numberWithCommas(x) {
 
 // Called whenever value in input changes
 function displayMatches() {
+  if (this.value == ' ') return;
   const matchArray = findMatches(this.value, cities);
   const html = matchArray
     .map((place) => {
